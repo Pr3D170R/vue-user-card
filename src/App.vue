@@ -14,7 +14,8 @@ export default {
   methods:{
     getList(){
       this.axios.get('https://randomuser.me/api/').then((response)=>{
-        console.log(response.data)
+        this.email = response.data['results'][0]['email'];
+        this.fullname = response.data['name']['first']+" "+response.data['name']['last'];
       })
     }
   },
@@ -27,6 +28,9 @@ export default {
       email: 'coldrabbit48@example.com',
       number: '+7-495-266-57-34'
     }
+  },
+  mounted(){
+    this.getList();
   }
 }
 </script>

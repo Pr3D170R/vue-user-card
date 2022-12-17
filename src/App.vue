@@ -1,6 +1,6 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <UserCard msg="Welcome to Your Vue.js App"/>
+  <UserCard v-bind:nickname="nickname" v-bind:fullname="fullname" v-bind:sity="sity" v-bind:stritn="stritn" v-bind:email="email" v-bind:number="number"/>
+  <button v-on:click="getList()">get data</button>
 </template>
 
 <script>
@@ -10,7 +10,24 @@ export default {
   name: 'App',
   components: {
     UserCard
-}
+  },
+  methods:{
+    getList(){
+      this.axios.get('https://randomuser.me/api/').then((response)=>{
+        console.log(response.data)
+      })
+    }
+  },
+  data(){
+    return {
+      nickname: 'moryak',
+      fullname: 'Василий Тёркин',
+      sity: 'Москва',
+      stritn: 'Юбилейная 50',
+      email: 'coldrabbit48@example.com',
+      number: '+7-495-266-57-34'
+    }
+  }
 }
 </script>
 
